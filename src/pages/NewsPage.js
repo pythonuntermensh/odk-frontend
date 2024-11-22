@@ -17,10 +17,6 @@ const NewsPage = () => {
         setNewsData(response.data.content);
       } catch (err) {
         setError(err.message);
-        setNewsData([
-          {id: 1, title: "Title 1", description: "Description 1", pictureUrl: "Url 1"},
-          {id: 2, title: "Title 2", description: "Description 2", pictureUrl: "Url 2"},
-        ])
       } finally {
         setLoading(false);
       }
@@ -49,9 +45,9 @@ const NewsPage = () => {
     return <div>Загрузка...</div>;
   }
 
-  // if (error) {
-  //   return <div>Ошибка: {error}</div>;
-  // }
+  if (error) {
+    return <div>Ошибка: отказано в доступе</div>;
+  }
 
   return (
     <div className="container mx-auto p-4">

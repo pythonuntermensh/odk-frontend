@@ -11,18 +11,11 @@ const AuditPage = () => {
     const fetchAuditData = async () => {
       try {
         const response = await axios.get('http://192.168.0.107:8080/api/v1/audit/request');
-        setAuditData(response.data);
+        // Сортировка данных по убыванию по полю createdAt
+        const sortedData = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setAuditData(sortedData);
       } catch (err) {
         setError(err.message);
-        setAuditData([
-            {"id":1,"ipAddress":"100.75.103.0","isRestricted":true,"createdAt":"2024-11-18T06:28:42.889927"},
-            {"id":2,"ipAddress":"172.24.0.1","isRestricted":false,"createdAt":"2024-11-18T06:28:47.874512"},
-            {"id":3,"ipAddress":"100.75.103.0","isRestricted":true,"createdAt":"2024-11-18T06:35:09.877171"},
-            {"id":4,"ipAddress":"172.25.0.1","isRestricted":false,"createdAt":"2024-11-18T06:35:17.726049"},
-            {"id":5,"ipAddress":"172.25.0.1","isRestricted":false,"createdAt":"2024-11-18T06:36:18.342123"},
-            {"id":6,"ipAddress":"100.75.103.0","isRestricted":true,"createdAt":"2024-11-18T06:36:27.481685"},
-            {"id":7,"ipAddress":"172.25.0.1","isRestricted":false,"createdAt":"2024-11-18T06:36:30.291708"}
-        ])
       } finally {
         setLoading(false);
       }
@@ -39,9 +32,9 @@ const AuditPage = () => {
     return <div>Загрузка...</div>;
   }
 
-//   if (error) {
-//     return <div>Ошибка: {error}</div>;
-//   }
+  if (error) {
+    return <div>Ошибка: отказано в доступе</div>;
+  }
 
   return (
     <div className="container mx-auto p-4">
