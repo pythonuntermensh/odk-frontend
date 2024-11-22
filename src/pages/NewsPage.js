@@ -13,7 +13,7 @@ const NewsPage = () => {
   useEffect(() => {
     const fetchNewsData = async () => {
       try {
-        const response = await axios.get('http://85.113.55.194:8080/api/v1/company/news');
+        const response = await axios.get('http://192.168.0.107:8080/api/v1/company/news');
         setNewsData(response.data.content);
       } catch (err) {
         setError(err.message);
@@ -35,7 +35,7 @@ const NewsPage = () => {
 
   const handleDeleteNews = async (id) => {
     try {
-      await axios.delete(`http://85.113.55.194:8080/api/v1/company/news/${id}`);
+      await axios.delete(`http://192.168.0.107:8080/api/v1/company/news/${id}`);
       setNewsData((prevNewsData) => prevNewsData.filter((news) => news.id !== id));
     } catch (error) {
       console.error('Ошибка при удалении новости:', error);
