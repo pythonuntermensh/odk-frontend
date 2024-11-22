@@ -10,7 +10,7 @@ const AuditPage = () => {
   useEffect(() => {
     const fetchAuditData = async () => {
       try {
-        const response = await axios.get('http://gateway-server:8010/api/v1/audit/request');
+        const response = await axios.get('http://0.0.0.0:8010/api/v1/audit/request');
         setAuditData(response.data);
       } catch (err) {
         setError(err.message);

@@ -17,7 +17,7 @@ const AddNewsModal = ({ isOpen, onClose, onAddNews }) => {
     };
 
     try {
-      const response = await axios.post('http://gateway-server:8010/api/v1/company/news', newNews);
+      const response = await axios.post('http://0.0.0.0:8010/api/v1/company/news', newNews);
       onAddNews(response.data); // Передаем данные новой новости в родительский компонент
       setTitle('');
       setDescription('');
